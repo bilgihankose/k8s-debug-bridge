@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="400" viewBox="0 0 1400 400">
+  <defs>
+    <marker id="arrowhead-banner" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#111111" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="400" fill="#F1F1F1" />
+
+  <!-- Left Side: Typography -->
+  <text x="80" y="190" font-family="Gelasio,Georgia,Charter,serif" font-size="64" font-weight="bold" fill="#111111" letter-spacing="-1">k8s-debug-bridge</text>
+  <text x="80" y="242" font-family="Gelasio,Georgia,Charter,serif" font-size="24" fill="#6B7280">Debug a live Kubernetes service on your laptop. No agent, no operator, no install.</text>
+  <text x="80" y="350" font-family="ui-monospace,Menlo,monospace" font-size="14" fill="#AAAAAA" letter-spacing="0.5">kubectl / oc exec · bash /dev/tcp · nc</text>
+
+  <!-- Right Side: Abstract Mark -->
+  <!-- Cluster Pods (Hexagons) -->
+  <g id="cluster-hexagons" stroke-width="2">
+    <!-- Far-Left -->
+    <path d="M 978.44 166 L 999.22 178 L 999.22 202 L 978.44 214 L 957.66 202 L 957.66 178 Z" fill="#FFFFFF" stroke="#DDDDDD" />
+    <!-- Top-Left -->
+    <path d="M 999.22 130 L 1020 142 L 1020 166 L 999.22 178 L 978.44 166 L 978.44 142 Z" fill="#FFFFFF" stroke="#DDDDDD" />
+    <!-- Bottom-Left -->
+    <path d="M 999.22 202 L 1020 214 L 1020 238 L 999.22 250 L 978.44 238 L 978.44 214 Z" fill="#FFFFFF" stroke="#DDDDDD" />
+    <!-- Active Bridge Pod (Center Right) -->
+    <path d="M 1020 166 L 1040.78 178 L 1040.78 202 L 1020 214 L 999.22 202 L 999.22 178 Z" fill="#FFFFFF" stroke="#111111" />
+  </g>
+
+  <!-- Traffic Line -->
+  <line x1="1049" y1="190" x2="1212" y2="190" stroke="#111111" stroke-width="2" marker-end="url(#arrowhead-banner)"/>
+
+  <!-- Laptop Outline -->
+  <g transform="translate(1220, 160)">
+    <!-- Screen bezel -->
+    <rect x="0" y="0" width="70" height="46" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2" />
+    <!-- Screen inner -->
+    <rect x="4" y="4" width="62" height="38" rx="1" fill="#FFFFFF" stroke="#DDDDDD" stroke-width="1" />
+    <!-- Terminal prompt symbol -->
+    <text x="8" y="18" font-family="ui-monospace,Menlo,monospace" font-size="12" font-weight="bold" fill="#111111">&gt;_</text>
+    <!-- Base -->
+    <path d="M -8 46 L 78 46 L 82 52 L -12 52 Z" fill="#FFFFFF" stroke="#111111" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Trackpad notch -->
+    <line x1="30" y1="46" x2="40" y2="46" stroke="#DDDDDD" stroke-width="2" />
+  </g>
+</svg>

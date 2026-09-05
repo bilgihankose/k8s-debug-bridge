@@ -1,0 +1,24 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  bats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install bats-core
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bats
+
+      - name: Shellcheck the scripts
+        run: |
+          sudo apt-get install -y shellcheck
+          shellcheck -S warning -x scripts/*.sh tests/fixtures/mock-kube.sh
+
+      - name: Run bats suite
+        run: bats tests/*.bats

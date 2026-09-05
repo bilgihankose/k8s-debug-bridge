@@ -1,0 +1,36 @@
+# Manifest for the temporary bridge pod that scripts/bridge-up.sh creates.
+# These placeholders are substituted at apply time:
+#   __BRIDGE_NAME__  pod name, and the value of the `debug` label the Service selector
+#                    gets pointed at
+#   __IMAGE__        bridge pod image — must ship `nc` (e.g. nicolaka/netshoot, busybox)
+#   __PORT__         the Service's numeric targetPort
+#
+# Edit this file to satisfy your cluster's policies: add imagePullSecrets, a
+# securityContext, nodeSelector/tolerations, or change the resource limits. Two things
+# must stay as they are:
+#   - the `debug: "__BRIDGE_NAME__"` label — redirect-service.sh points the Service
+#     selector at exactly this key/value
+#   - the container name `debug-bridge` — tunnel.sh and cleanup.sh exec into it by name
+#
+# The container only sleeps; the listener (`nc -l -p <port>`) is started per connection
+# by tunnel.sh over `exec`, so nothing here needs to run a server.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: __BRIDGE_NAME__
+  labels:
+    debug: "__BRIDGE_NAME__"
+spec:
+  containers:
+  - name: debug-bridge
+    image: __IMAGE__
+    command: ["sh", "-c", "sleep infinity"]
+    ports:
+    - containerPort: __PORT__
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+      requests:
+        cpu: "100m"
+        memory: "128Mi"

@@ -1,0 +1,10 @@
+# Runtime state written by scripts/bridge-up.sh — contains cluster namespace/service
+# names, your username/hostname (via bridge-up.sh's OWNER value). Never commit this.
+.state/
+
+# Test artifacts
+tests/.coverage/
+
+# macOS / editor cruft
+.DS_Store
+.vscode/
