@@ -32,7 +32,7 @@ Use them if you can — they're good, and for full-environment transparency they
 
 In a regulated cluster those requirements are often what gets a tool rejected. This one runs inside the RBAC a normal developer already has: create a pod, exec into it, patch a Service in your own namespace.
 
-The long version — how each tool actually works, what each costs, and when to pick which — is in the article: **[Read the full write-up](https://medium.com/@bilgihankose/routing-kubernetes-traffic-to-localhost-without-extra-dependencies)**.
+The long version — how each tool actually works, what each costs, and when to pick which — is in the article: **[Read the full write-up](https://medium.com/@bilgihankose/routing-kubernetes-traffic-to-localhost-without-extra-dependencies-1f4f0491740d)**.
 
 > ⚠️ **This touches real cluster state.** `bridge-up.sh` creates a real Pod and `redirect-service.sh` repoints a real Service — from that moment the real pods stop receiving traffic. An AI agent running this must tell you what it's about to do and get your approval before *both* steps. If it doesn't, stop it.
 
@@ -91,7 +91,7 @@ Attach your debugger to the *app*, separately, on its own port (Go: Delve on 234
 
 **Local side not set up yet?** [`docs/local-debug-setup.md`](docs/local-debug-setup.md) is the recipe: the three requirements your local app has to satisfy, a working Go setup (Air + Delve, with the `.air.toml` and `launch.json` that matter), the equivalent entry points for Node, Python, JVM and .NET, and what to expect during a session — hot reloads freeing the port, held breakpoints holding real requests. It ships with the skill, so an agent can follow it and adapt it to your project.
 
-**Want a worked example?** The article walks through a complete Go setup — installing Air and Delve, the `.air.toml` and `launch.json` contents, and hot reload with the debugger attached, end to end: **[read it here](https://medium.com/@bilgihankose/routing-kubernetes-traffic-to-localhost-without-extra-dependencies)**.
+**Want a worked example?** The article walks through a complete Go setup — installing Air and Delve, the `.air.toml` and `launch.json` contents, and hot reload with the debugger attached, end to end: **[read it here](https://medium.com/@bilgihankose/routing-kubernetes-traffic-to-localhost-without-extra-dependencies-1f4f0491740d)**.
 
 Traffic doesn't have to arrive through a public Route or Ingress. **Any** in-cluster caller of that Service is intercepted too — a dashboard's Nginx doing `proxy_pass http://auth-service/` lands on your breakpoint just the same.
 
@@ -165,7 +165,7 @@ If a bridge is left behind while you debug the issue, `scripts/cleanup.sh <names
 
 The scripts are covered by [bats](https://github.com/bats-core/bats-core) tests with a mocked `kubectl` (`tests/`), and CI runs shellcheck over everything. Note that `tests/agent-instructions.bats` guards the safety wording in `SKILL.md` / `AGENTS.md` — those files are read by an AI agent, so a reworded approval step is a behaviour change. If you need to change one of those sentences, update the test in the same PR.
 
-The only worked language example so far is Go + Air + Delve, written up in [the article](https://medium.com/@bilgihankose/routing-kubernetes-traffic-to-localhost-without-extra-dependencies). The bridge itself is language-agnostic, so an equivalent walkthrough for Node, Python or Java is the most useful thing you could contribute — open a PR.
+The only worked language example so far is Go + Air + Delve, written up in [the article](https://medium.com/@bilgihankose/routing-kubernetes-traffic-to-localhost-without-extra-dependencies-1f4f0491740d). The bridge itself is language-agnostic, so an equivalent walkthrough for Node, Python or Java is the most useful thing you could contribute — open a PR.
 
 ## License
 
