@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="180" viewBox="0 0 1400 180">
+ <defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#444444"/><stop offset="100%" stop-color="#111111"/></linearGradient>
+ <linearGradient id="f3" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0%" stop-color="#DDDDDD"/><stop offset="100%" stop-color="#F1F1F1"/></linearGradient></defs>
+ <rect width="1400" height="180" fill="#F1F1F1"/>
+ <rect x="0" y="89" width="1400" height="1.5" fill="url(#f3)"/>
+ <rect x="80" y="60" width="5" height="60" rx="2.5" fill="url(#g3)"/>
+ <text x="112" y="84" font-family="ui-monospace,Menlo,monospace" font-size="14" fill="#111111" letter-spacing="4">04</text>
+ <text x="112" y="118" font-family="Gelasio,Georgia,Charter,serif"
+       font-size="30" font-weight="650" fill="#111111" letter-spacing="-0.5">What this is actually for</text>
+ <g fill="#DDDDDD"><circle cx="1215" cy="72" r="3.5"/><circle cx="1262" cy="72" r="3.5"/><circle cx="1309" cy="72" r="3.5"/>
+  <circle cx="1215" cy="108" r="3.5"/><circle cx="1262" cy="108" r="3.5"/><circle cx="1309" cy="108" r="3.5"/></g>
+ <circle cx="1262" cy="90" r="5.5" fill="#111111"/>
+ <path d="M1272,90 L1330,90" stroke="#111111" stroke-width="2"/>
+</svg>

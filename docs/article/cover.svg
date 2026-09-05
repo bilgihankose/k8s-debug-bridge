@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="787" viewBox="0 0 1400 787">
+ <defs>
+  <linearGradient id="bl" x1="0" y1="0" x2="1" y2="0">
+   <stop offset="0%" stop-color="#111111"/><stop offset="100%" stop-color="#111111"/>
+  </linearGradient>
+  <marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+   <path d="M0,0 L10,5 L0,10 Z" fill="#111111"/>
+  </marker>
+ </defs>
+ <rect width="1400" height="787" fill="#F1F1F1"/>
+ <rect x="0" y="0" width="1400" height="7" fill="url(#bl)"/>
+
+ <text x="100" y="132" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="15"
+       fill="#111111" letter-spacing="4">KUBERNETES  ·  LOCAL DEBUGGING</text>
+
+ <text x="100" y="262" font-family="ui-sans-serif, -apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+       font-size="76" font-weight="800" fill="#111827" letter-spacing="-2.4">Real cluster traffic.</text>
+ <text x="100" y="348" font-family="ui-sans-serif, -apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+       font-size="76" font-weight="800" fill="#111827" letter-spacing="-2.4">Your laptop.</text>
+ <text x="100" y="434" font-family="ui-sans-serif, -apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+       font-size="76" font-weight="800" fill="#AAAAAA" letter-spacing="-2.4">Zero dependencies.</text>
+
+ <!-- yon serisi: cluster -> laptop -->
+ <g transform="translate(100,510)">
+   <rect x="0" y="0" width="196" height="74" rx="10" fill="#fff" stroke="#DDDDDD" stroke-width="1.5"/>
+   <text x="98" y="45" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="19"
+         fill="#333333" text-anchor="middle">Cluster Service</text>
+   <path d="M212,37 L322,37" stroke="#111111" stroke-width="3" marker-end="url(#a2)"/>
+   <text x="267" y="22" font-family="ui-monospace, Menlo, monospace" font-size="14"
+         fill="#111111" text-anchor="middle">exec</text>
+   <rect x="338" y="0" width="196" height="74" rx="10" fill="#fff" stroke="#111111" stroke-width="2"/>
+   <text x="436" y="45" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="18"
+         fill="#111111" text-anchor="middle">127.0.0.1</text>
+ </g>
+
+ <text x="100" y="664" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="17" fill="#6B7280">
+   $ npx skills add bilgihankose/k8s-debug-bridge</text>
+
+ <text x="1300" y="742" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="15"
+       fill="#AAAAAA" text-anchor="end">kubectl · bash /dev/tcp · nc</text>
+</svg>
