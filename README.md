@@ -40,6 +40,14 @@ The long version — how each tool actually works, what each costs, and when to 
 
 The one-liner at the top goes through the [skills.sh](https://skills.sh) CLI, which pulls this repo straight from GitHub into your agent's skill directory. It works across Claude Code, Codex, Cursor, Copilot, Windsurf and Gemini, because [Agent Skills](https://agentskills.io) is an open standard — one `SKILL.md`, no per-agent adapter.
 
+Already installed and want the latest version:
+
+```bash
+npx skills update k8s-debug-bridge
+```
+
+What changed between versions is in [CHANGELOG.md](CHANGELOG.md); the version you have is the `metadata.version` field in your copy of `SKILL.md`.
+
 <details>
 <summary>Install by hand instead</summary>
 
