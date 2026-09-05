@@ -14,6 +14,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck source=lib-kube-cli.sh
 source "$SCRIPT_DIR/lib-kube-cli.sh"
+# shellcheck source=lib-checks.sh
+source "$SCRIPT_DIR/lib-checks.sh"
 
 NAMESPACE="${1:?namespace required}"
 SERVICE="${2:?service name required}"
@@ -25,6 +27,8 @@ if ! [[ "$PORT" =~ ^[0-9]+$ ]]; then
   ui_err "ERROR: Port '$PORT' must be a valid numeric port number (e.g. 8000). Named ports must be mapped to their numeric container port."
   exit 1
 fi
+
+warn_if_debugger_port "$PORT"
 
 ANNOTATION_OWNER="k8s-debug-bridge/owner"
 ANNOTATION_SELECTOR="k8s-debug-bridge/original-selector"

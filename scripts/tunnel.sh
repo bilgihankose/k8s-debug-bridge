@@ -32,11 +32,15 @@ PORT="${4:-8000}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck source=lib-kube-cli.sh
 source "$SCRIPT_DIR/lib-kube-cli.sh"
+# shellcheck source=lib-checks.sh
+source "$SCRIPT_DIR/lib-checks.sh"
 
 if ! [[ "$PORT" =~ ^[0-9]+$ ]]; then
   ui_err "ERROR: Port '$PORT' must be a valid numeric port number (e.g. 8000)."
   exit 1
 fi
+warn_if_debugger_port "$PORT"
+
 CLEANED_UP=0
 # Container name inside the bridge pod — must match the name in assets/bridge-pod.yaml.
 CONTAINER="debug-bridge"

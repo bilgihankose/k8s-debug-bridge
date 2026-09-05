@@ -67,6 +67,8 @@ ui_head "== Services in '$NAMESPACE' (name + port + targetPort) =="
 ui_note "IMPORTANT: use TARGETPORT (not PORT) as the <port> argument for bridge-up.sh/"
 ui_note "tunnel.sh — kube-proxy forwards traffic to the pod's targetPort, not the"
 ui_note "Service's client-facing port, and not whatever 'free' port you might pick."
+ui_note "It is also NOT your debugger's port (Delve 2345, debugpy 5678, node 9229): the"
+ui_note "debugger talks to your IDE only and is never bridged."
 SERVICE_NAMES=$("$KUBE_CLI" get services -n "$NAMESPACE" \
   -o custom-columns='NAME:.metadata.name,PORT:.spec.ports[*].port,TARGETPORT:.spec.ports[*].targetPort' --no-headers 2>/dev/null || true)
 if [ -z "$SERVICE_NAMES" ]; then

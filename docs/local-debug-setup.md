@@ -8,7 +8,7 @@ Three requirements, in this order. Everything below is just a language-specific 
 
 1. **The app listens on the Service's `targetPort`.** Not the Service's client-facing `port`, and not a free port you picked — `check-env.sh` prints the right number. Once the selector is switched, kube-proxy delivers to that port and nothing else.
 2. **It is already listening before the Service is redirected.** Verify it, do not assume: `lsof -nP -iTCP:<port> -sTCP:LISTEN` (on Windows, `netstat -ano | findstr :<port>`). A redirect made against a port with nothing behind it turns every real request into a connection failure.
-3. **The debugger attaches to the app on its own separate port.** The bridge knows nothing about debuggers; a debugger port is never the port you pass to `bridge-up.sh` / `tunnel.sh`.
+3. **The debugger attaches to the app on its own separate port.** The bridge knows nothing about debuggers; a debugger port is never the port you pass to `bridge-up.sh` / `tunnel.sh`. This is the mistake people actually make: they see Delve on `2345`, think of it as "the debugging port", and bridge that. The debugger speaks its own protocol to your IDE — cluster traffic arriving there is accepted, fails to parse, and is dropped, so every request returns a 502 and the tunnel looks broken. Two ports, two jobs: the bridge carries HTTP to the **application**, the IDE carries a debug session to the **debugger**.
 
 A fourth one, easy to miss: **paths are delivered unchanged.** The bridge does not emulate an Ingress rewrite, so the local app's base prefix has to accept the path the Service actually receives. Prove it with an endpoint that already works before testing a new one.
 

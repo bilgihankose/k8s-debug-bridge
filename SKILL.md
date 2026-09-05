@@ -132,7 +132,12 @@ lsof -nP -iTCP:<port> -sTCP:LISTEN
    listening on `127.0.0.1:<port>` — the local app is down, still building, or a hot
    reload released the port. Fix that rather than restarting the tunnel.
 
-4. **Local debug**: the local app is already running and verified (see the
+4. **Local debug**: the port you bridge is the port the **application** serves on
+   (the Service's `targetPort`), never the port its debugger listens on. If the user
+   says "my debugger is on 2345, bridge that", they are conflating the two: correct
+   them, ask which port the application itself serves on, and bridge that one. Traffic
+   sent to a debugger port comes back as 502s that look like a broken tunnel.
+   The local app is already running and verified (see the
    precondition above); it is what receives tunneled traffic. Their language's debugger
    (e.g. Delve, a Node inspector) attaches to that running application separately,
    usually on a different port — e.g. in Go, Air + Delve on port 2345 while the app

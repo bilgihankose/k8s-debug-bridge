@@ -109,3 +109,21 @@ teardown() {
   assert_output_contains "has NOT been touched"
   refute_called "patch service"
 }
+
+@test "bridge-up.sh: warns when the port looks like a debugger port, and still proceeds" {
+  export MOCK_SELECTOR_OUTPUT="app=auth-service
+"
+  run "$PROJECT_DIR/scripts/bridge-up.sh" dev auth-service my-bridge nicolaka/netshoot 2345
+  [ "$status" -eq 0 ]
+  assert_output_contains "2345 is a well-known debugger port"
+  assert_output_contains "targetPort"
+  assert_called "apply -n dev -f -"
+}
+
+@test "bridge-up.sh: says nothing about debuggers for an ordinary application port" {
+  export MOCK_SELECTOR_OUTPUT="app=auth-service
+"
+  run "$PROJECT_DIR/scripts/bridge-up.sh" dev auth-service my-bridge nicolaka/netshoot 8000
+  [ "$status" -eq 0 ]
+  refute_output_contains "debugger port"
+}

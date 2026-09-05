@@ -23,6 +23,13 @@ Do not ask the user for the namespace/service name and use it blindly. First run
 
 Show the output to the user and let them pick the target Service from the list — don't
 make them guess. Then ask:
+- **Application port, never the debugger port.** The `<port>` argument is the port the
+  application serves on — the Service's `targetPort` that `check-env.sh` prints. A
+  debugger's own port (Delve 2345, debugpy 5678, node --inspect 9229, JDWP 5005) is
+  spoken to by the IDE alone and is never bridged. If the user asks for the debugger
+  port, say why that fails (the debugger drops the connection, every request returns
+  502) and ask for the application's port instead.
+
 - **The bridge pod image — always ask, never assume.** Ask outright *"which image
   should the bridge pod use?"* and wait for an answer; don't fall back to a default.
   Only the user knows which image their cluster is allowed to pull — many clusters

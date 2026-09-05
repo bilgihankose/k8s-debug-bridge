@@ -95,6 +95,8 @@ Each script does one thing and hands off. `cleanup.sh` is dashed because you rar
 
 **Get `<port>` right.** Once the selector points at your bridge pod, kube-proxy forwards to that pod's **`targetPort`** — not the Service's client-facing `port`, and not some free port you picked. Use the number `check-env.sh` prints; resolve named ports (`http`) to their numeric container port.
 
+> ⚠️ **Not your debugger's port.** The single most confusing way to get this wrong is to bridge the port your debugger listens on — Delve's `2345`, debugpy's `5678`, Node's `9229`. The debugger only ever talks to your IDE; it is not part of the tunnel. Point the bridge at the port your **application** serves on, and attach the debugger to that application separately. Bridge the debugger port instead and it accepts the connection, fails to parse HTTP and drops it, so every request comes back as a 502 that looks like a broken tunnel. `bridge-up.sh` and `tunnel.sh` warn when they see a well-known debugger port, but they cannot know your app's real port — `check-env.sh` prints it.
+
 `oc` or `kubectl` is auto-detected (`scripts/lib-kube-cli.sh`); force it with `KUBE_CLI=oc` / `KUBE_CLI=kubectl`.
 
 **Output.** Colour and the `▸`/`✓` markers appear only when you are looking at a terminal — piped output, CI logs and AI-agent transcripts get plain ASCII, so nothing downstream has to strip escape codes. `NO_COLOR=1` (or `TERM=dumb`) turns styling off everywhere.

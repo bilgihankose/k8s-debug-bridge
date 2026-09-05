@@ -43,3 +43,9 @@ teardown() {
   [ "$status" -eq 1 ]
   assert_output_contains "does not ship 'nc'"
 }
+
+@test "tunnel.sh: warns when the port looks like a debugger port" {
+  export MOCK_EXEC_EXIT=1
+  run run_with_timeout 20 "$PROJECT_DIR/scripts/tunnel.sh" dev auth-service my-bridge 5678
+  assert_output_contains "5678 is a well-known debugger port"
+}
